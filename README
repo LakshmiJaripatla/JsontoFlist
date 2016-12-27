@@ -1,0 +1,136 @@
+Examples:
+
+Input 1:
+{  
+   "FldInheritedInfo":{  
+      "FldCcInfo":[  
+         {  
+            "FldDebitExp":"0905",
+            "FldDebitNum":"4444111122223333",
+            "FldName":"Joe Smith"
+         }
+      ]
+   }
+}
+
+Output 1:
+0 PIN_FLD_INHERITED_INFO       SUBSTRUCT [0] allocated 1, used 1
+1     PIN_FLD_CC_INFO              ARRAY [0] allocated 3, used 3
+2         PIN_FLD_NAME               STR [0] "Joe Smith"
+2         PIN_FLD_DEBIT_EXP          STR [0] "XXXX"
+2         PIN_FLD_DEBIT_NUM          STR [0] "XXXX"
+
+
+Input 2:
+{
+   "FldNameinfo":[
+      {
+         "FldSalutation":"Mr.",
+         "FldFirstName":"Shrihari",
+         "FldLastName":"Venkatesha"
+      },
+      {
+         "FldSalutation":"Mr.",
+         "FldFirstName":"Srinivasa",
+         "FldLastName":"Venkatesha"
+      },
+      {
+         "FldSalutation":"Mr.",
+         "FldFirstName":"BhaktaVastala",
+         "FldLastName":"Karunasagar"
+      }
+   ]
+}
+
+Output 2:
+0 PIN_FLD_NAMEINFO                 ARRAY [0] allocated 3, used 3
+1     PIN_FLD_LAST_NAME              STR [0] "Venkatesha"
+1     PIN_FLD_FIRST_NAME             STR [0] "Shrihari"
+1     PIN_FLD_SALUTATION             STR [0] "Mr."
+0 PIN_FLD_NAMEINFO                 ARRAY [1] allocated 3, used 3
+1     PIN_FLD_LAST_NAME              STR [0] "Venkatesha"
+1     PIN_FLD_FIRST_NAME             STR [0] "Srinivasa"
+1     PIN_FLD_SALUTATION             STR [0] "Mr."
+0 PIN_FLD_NAMEINFO                 ARRAY [2] allocated 3, used 3
+1     PIN_FLD_LAST_NAME              STR [0] "Karunasagar"
+1     PIN_FLD_FIRST_NAME             STR [0] "BhaktaVastala"
+1     PIN_FLD_SALUTATION             STR [0] "Mr."
+
+
+Design:
+
+Example Array parsing:
+{
+ "FldNameinfo":[{"FldSalutation":"Mr.","FldFirstName":"Srihari","FldLastName":"Venkatesha"},
+ {"FldSalutation":"Mr.","FldFirstName":"Srihari","FldLastName":"Venkatesha"},
+ {"FldSalutation":"Mr.","FldFirstName":"Srihari","FldLastName":"Venkatesha"}
+  ]    
+}
+
+enterAnObject  ------------- Top level Flist alocation and push to map
+enterPair      ------------- push parent flist to map   
+enterArrayValue ------------ push parent flist to map   
+enterArrayOfObject  --------- Allocate Sparse tree and push to sparse tree map and also push parent flist
+enterAnObject  --------- Alocate flist and push to map
+enterPair   --------- push parent flist to map
+exitPair    --------- get flist from map, string and value.Update the flist with value.
+enterPair  --------- push parent flist to map
+exitPair   --------- get flist from map, string and value.Update the flist with value.
+enterPair
+exitPair
+exitAnObject -- do nothing..map has its own flist
+enterAnObject -- 
+enterPair
+exitPair
+enterPair
+exitPair
+enterPair
+exitPair
+exitAnObject
+enterAnObject
+enterPair
+exitPair
+enterPair
+exitPair
+enterPair
+exitPair
+exitAnObject
+exitArrayOfObject ---- Populate sparse tree with all the child flist objects
+exitArrayValue   -- push sparse tree to map from child
+exitPair -- get flist from map, string and value.Update the flist with value.
+exitAnObject
+
+
+Example Object parsing:
+{
+ "FldNameinfo":{"FldSalutation":"Mr.","FldFirstName":"Srihari","FldLastName":"Venkatesha"},
+ "FldNameinfo2":{"FldSalutation":"Mr.","FldFirstName":"Srihari","FldLastName":"Venkatesha"}    
+}
+
+enterAnObject                 ------------- Top level Flist alocation
+enterPair                     ------------- Copy top level flist from parent
+enterObjectValue              ------------- Copy top level flist from parent
+enterAnObject                 ------------- Allocate the new flist for new Object and push it to global var
+enterPair                     ------------- Copy top level flist from parent
+exitPair                      ------------- push String and value pair to parent flist tagged to this node 
+enterPair                     ------------- Copy top level flist from parent  
+exitPair                      ------------- push String and value pair to parent flist tagged to this node 
+enterPair                     ------------- Copy top level flist from parent  
+exitPair                      ------------- push String and value pair to parent flist tagged to this node 
+exitAnObject                  ------------- Do Nothing as it already has newly allocated flist for object 
+exitObjectValue               ------------- Replace flist pointer with the child object, so that exit pair can use it
+exitPair                      
+enterPair
+enterObjectValue
+enterAnObject
+enterPair
+exitPair
+enterPair
+exitPair
+enterPair
+exitPair
+exitAnObject
+exitObjectValue
+exitPair
+exitAnObject
+

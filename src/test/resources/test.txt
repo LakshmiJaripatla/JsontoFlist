@@ -1,0 +1,19 @@
+{
+   "FldNameinfo":[
+      {
+         "FldSalutation":"Mr.",
+         "FldFirstName":"Shrihari",
+         "FldLastName":"Venkatesha"
+      },
+      {
+         "FldSalutation":"Mr.",
+         "FldFirstName":"Srinivasa",
+         "FldLastName":"Venkatesha"
+      },
+      {
+         "FldSalutation":"Mr.",
+         "FldFirstName":"BhaktaVastala",
+         "FldLastName":"Karunasagar"
+      }
+   ]
+}

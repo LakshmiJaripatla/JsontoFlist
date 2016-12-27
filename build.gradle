@@ -1,0 +1,48 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'antlr'
+
+sourceCompatibility = 1.8
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    //compile files('C:\Users\nm_su\Downloads\BrmJars\', 'libs/b.jar')
+    compile fileTree(dir: 'C:/Users/nm_su/Downloads/BrmJars', include: '*.jar')
+}
+
+
+/*jar {
+  manifest {
+    attributes ('Main-Class': 'com.subra.app.ParserApp')
+  }
+}*/
+
+dependencies {
+    antlr "org.antlr:antlr4:4.5.3"
+    
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    testCompile group: 'junit', name: 'junit', version: '4.+'    
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
