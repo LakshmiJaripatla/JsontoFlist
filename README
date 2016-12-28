@@ -60,9 +60,10 @@ How to run :
 
 > java -cp C:\Antlar\antlr-4.5.3-complete.jar;C:\BrmJars\pcm.jar;C:\BrmJars\pcmext.jar;C:\BrmJars\pcf.jar;C:\JSonFlistAdaptor\JSonFlistAdaptor-1.0.jar;. com.subra.app.ParserApp
 
+JRE 8 is used to build and run 
+JSonFlistAdaptor-1.0.jar can be found in the git repo.
 antlr-4.5.3-complete.jar can be found in the git repo.
 pcm.jar,pcmext.jar and pcf.jar would need to be downloaded from your BRM installation.
-Its tested with Java 8
 
 Currently Supported Data types:
 ​Array
@@ -72,11 +73,15 @@ String
 POID
 
 How to support other data types:
-PcmAdaptor.getFldType and PcmAdaptor.strToTargetObj to support new data types.  
+Update PcmAdaptor.getFldType and PcmAdaptor.strToTargetObj to support new data types.  
 
 How to Use:
-If your BRM rest adaptor is built using Spring, then you may have to make use of message converter to convert incoming JSON to FLIST. Use Java PCM to talk with BRM installation. Collect the response. And frame the JSON response by parsing response FLIST. I have not yet created FLIST TO JSON parser. If there is a need, I would work on it, in my free time. 
+If your BRM REST adaptor is built using Spring, then you may have to make use of message converter to convert incoming JSON to FLIST using this project as the basis. Use Java PCM to talk with BRM. Frame the JSON response by parsing response FLIST. I have not yet created FLIST TO JSON parser. If there is a need, I would work on it, in my free time. 
 
+License:
+
+  This piece of work comes with no warranty and no support.   
+  
 Design:
 
 Example Array parsing:
