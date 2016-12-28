@@ -56,6 +56,26 @@ Output 2:
 1     PIN_FLD_FIRST_NAME             STR [0] "BhaktaVastala"
 1     PIN_FLD_SALUTATION             STR [0] "Mr."
 
+How to run :
+
+> java -cp C:\Antlar\antlr-4.5.3-complete.jar;C:\BrmJars\pcm.jar;C:\BrmJars\pcmext.jar;C:\BrmJars\pcf.jar;C:\JSonFlistAdaptor\JSonFlistAdaptor-1.0.jar;. com.subra.app.ParserApp
+
+antlr-4.5.3-complete.jar can be found in the git repo.
+pcm.jar,pcmext.jar and pcf.jar would need to be downloaded from your BRM installation.
+Its tested with Java 8
+
+Currently Supported Data types:
+​Array
+Substruct
+Int
+String
+POID
+
+How to support other data types:
+PcmAdaptor.getFldType and PcmAdaptor.strToTargetObj to support new data types.  
+
+How to Use:
+If your BRM rest adaptor is built using Spring, then you may have to make use of message converter to convert incoming JSON to FLIST. Use Java PCM to talk with BRM installation. Collect the response. And frame the JSON response by parsing response FLIST. I have not yet created FLIST TO JSON parser. If there is a need, I would work on it, in my free time. 
 
 Design:
 
