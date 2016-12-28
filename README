@@ -58,7 +58,7 @@ Output 2:
 
 How to run :
 
-> java -cp C:\Antlar\antlr-4.5.3-complete.jar;C:\BrmJars\pcm.jar;C:\BrmJars\pcmext.jar;C:\BrmJars\pcf.jar;C:\JSonFlistAdaptor\JSonFlistAdaptor-1.0.jar;. com.subra.app.ParserApp
+> java -cp .\antlr-4.5.3-complete.jar;.\pcm.jar;.\pcmext.jar;.\pcf.jar;.\JSonFlistAdaptor-1.0.jar;. com.subra.app.ParserApp
 
 JRE 8 is used to build and run 
 JSonFlistAdaptor-1.0.jar can be found in the git repo.
