@@ -1,4 +1,6 @@
-Examples:
+Oracle BRM is a world class billing and rating system. But, it exposes proprietary communication interface and SOAP interface for integration with external systems. As the world has moved towards JSON based RESTful interfaces, OBRM is lacking the connectivity with latest technologies. This project provides the JSON to Flist parser for developing REST adaptor for Oracle BRM.
+
+Below are the few example input and outputs generated from this parser:
 
 Input 1:
 {  
@@ -58,6 +60,12 @@ Output 2:
 
 How to run :
 
+Setup:
+JRE 8 is used to build and run 
+JSonFlistAdaptor-1.0.jar can be found in the git repo.
+antlr-4.5.3-complete.jar can be found in the git repo.
+pcm.jar,pcmext.jar and pcf.jar would need to be downloaded from your BRM installation.
+
 > java -cp .\antlr-4.5.3-complete.jar;.\pcm.jar;.\pcmext.jar;.\pcf.jar;.\JSonFlistAdaptor-1.0.jar;. com.subra.app.ParserApp
 
 {
@@ -94,13 +102,8 @@ How to run :
 1     PIN_FLD_SALUTATION             STR [0] "Mr."
 
 
-JRE 8 is used to build and run 
-JSonFlistAdaptor-1.0.jar can be found in the git repo.
-antlr-4.5.3-complete.jar can be found in the git repo.
-pcm.jar,pcmext.jar and pcf.jar would need to be downloaded from your BRM installation.
-
 Currently Supported Data types:
-​Array
+Array
 Substruct
 Int
 String
