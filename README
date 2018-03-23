@@ -1,3 +1,5 @@
+Most of the on premises products expose only proprietary communication interface or SOAP interface for integration with external systems.Thus, fall behind with all the new products developed offlate. Below work provides example of building JSON based RESTful interface to on-premises products using Oracle BRM as an example.
+
 Oracle BRM is a world class billing and rating system. But, it exposes proprietary communication interface and SOAP interface for integration with external systems. As the world has moved towards JSON based RESTful interfaces, OBRM is lacking the connectivity with latest technologies. This project provides the JSON to Flist parser for developing REST adaptor for Oracle BRM.
 
 Below are the few example input and outputs generated from this parser:
